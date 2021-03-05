@@ -50,6 +50,10 @@ describe('Customer', function() {
       expect(customer.moneySpent).to.deep.equal(429.44);
     });
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 08c74558cf3080f9ade1da200ecd57d0f8af9543
   });
 });
