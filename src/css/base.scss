@@ -1,9 +1,49 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
 
+$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+$opaque: 0.8;
+
+html {
+  background: $primary-background;
+  background-image: url('../images/zulu_beadwork.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100%
+}
 
 body {
   font-family: 'Ubuntu', sans-serif;
-  background: $primary-background;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  font-size: 34px;
+  color: green;
+  width: 75vw;
+  height: 12em;
+  margin-top: 08vh;
+  background-color: white;
+  opacity: $opaque;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 18px;
+}
+
+footer {
+  opacity: $opaque;
+  width: 100vh;
+  height: 6vh;
+  background-color: white;
+  position: absolute;
+  margin-top: 90vh;
+}
+
+
+
+.background {
+
 }
