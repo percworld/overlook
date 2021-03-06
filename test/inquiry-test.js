@@ -6,12 +6,15 @@ import Inquiry from '../src/Inquiry'; // may not need custs
 
 let customer;
 let inquiry;
+let date;
+let room1 = rooms[0];
 
 describe('Customer', function() {
 
   beforeEach( () => {
     customer = new Customer(customers[0])
     inquiry = new Inquiry(rooms, bookings);
+    date = new Date;
   });
 
   it('should instantiate an Inquiry', () => {
@@ -65,12 +68,26 @@ describe('Customer', function() {
     });
   });
 
+  it('should have a date', () => {
+
+    inquiry.getToday()
+    expect(typeof inquiry.date).to.deep.equal('string');
+  });
+
+  it('should have a list of no available rooms by default', () => {
+
+    expect(inquiry.availableRooms).to.deep.equal([]);
+  });
+
   describe('Inquiry methods', () => {
 
     it('should know if a room is available', () => {
 
+
+      inquiry.getToday();
+      expect(inquiry.checkAvailable(room1)).to.deep.equal(true);
     });
-  });  
+  });
 
 
 })
