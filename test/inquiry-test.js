@@ -8,6 +8,7 @@ let customer;
 let inquiry;
 let date;
 let room1 = rooms[0];
+let roomType = "single room";
 
 describe('Customer', function() {
 
@@ -74,9 +75,14 @@ describe('Customer', function() {
     expect(typeof inquiry.date).to.deep.equal('string');
   });
 
-  it('should have a list of no available rooms by default', () => {
+  it('should have a list of zero available rooms by default', () => {
 
     expect(inquiry.availableRooms).to.deep.equal([]);
+  });
+
+  it('should have a list of zero unavailable rooms by default', () => {
+
+    expect(inquiry.unavailableRooms).to.deep.equal([]);
   });
 
   describe('Inquiry methods', () => {
@@ -85,7 +91,10 @@ describe('Customer', function() {
 
 
       inquiry.getToday();
-      expect(inquiry.checkAvailable(room1)).to.deep.equal(true);
+      inquiry.checkAvailable(rooms, roomType, bookings, "2020/04/22")
+
+      expect(inquiry.availableRooms).to.have.a.lengthOf(1);
+      //expect(inquiry.availableRooms).to.deep.equal();
     });
   });
 
