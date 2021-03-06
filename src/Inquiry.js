@@ -1,6 +1,16 @@
 class Inquiry {
-  constructor() {
+  constructor(rooms, bookings) {
+    this.rooms = rooms;
+    this.bookings = bookings;
+  }
+
+  checkAvailable(room) {
     
   }
+
+
+
+
 }
+
 export default Inquiry;
