@@ -1,6 +1,6 @@
+ 
 
-
-
+import './css/reset.scss';
 import './css/base.scss';
 import './css/styles.scss';
 import './images/zulu_beadwork.jpg'
@@ -35,6 +35,33 @@ const getBookings = () => {
   .catch((err) => alert(`This data is not available.  Server says ${err}`))
 }
 
+const addBooking = () => {
+  return fetch('http://localhost:3001/api/v1/bookings',
+    {
+      method:'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(
+        { "userID": 48, "date": "2019/09/23", "roomNumber": 4 }
+      ),
+    })
+    .then(response => response.json())
+    .catch((err) => alert(`This booking was not added.  Server says ${err}`));
+}
+const deleteBooking = (id) => {
+  return fetch(`http://localhost:3001/api/v1/bookings/${id}`,
+    {
+      method:'DELETE',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(),
+    })
+    .then(response => response.json())
+    .catch((err) => alert(`This booking was not deleted.  Server says ${err}`));
+}
+
 const getAllData = () => {
   Promise.all([getCustomers(), getRooms(), getBookings()])
   .then(dataSets => {
@@ -46,4 +73,4 @@ const getAllData = () => {
 
 getAllData();
 
-export default { getAllData, getOneCustomer };
+export default { getAllData, getOneCustomer, addBooking, deleteBooking };

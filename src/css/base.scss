@@ -1,7 +1,18 @@
+@use 'partial';
 
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 $opaque: 0.8;
 
+%hazy-box {
+  background-color: white;
+  opacity: $opaque;
+  color: green;
+}
+%flex-cont {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 html {
   background: $primary-background;
   background-image: url('../images/zulu_beadwork.jpg');
@@ -14,32 +25,39 @@ html {
 body {
   font-family: 'Ubuntu', sans-serif;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend %flex-cont;
 }
 
 header {
-  font-size: 34px;
-  color: green;
+  font-size: 68px;
   width: 75vw;
-  height: 12em;
-  margin-top: 08vh;
-  background-color: white;
-  opacity: $opaque;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 2.25em;
+  margin-top: 14.75vh;
+  padding-top: 7vh;
   border-radius: 18px;
+  @extend %flex-cont;
+  @extend %hazy-box
+}
+
+.info-area {
+  margin-top: 6em;
+  height: 9em;
+  width: 100%;
+  @extend %hazy-box;
+  @extend %flex-cont;
+  font-size: 44px;
 }
 
 footer {
-  opacity: $opaque;
-  width: 100vh;
-  height: 6vh;
-  background-color: white;
+  text-align: center;
+  margin-left: 27px;
+  font-size: 32px;
+  width: 80vh;
+  height: 9vh;
   position: absolute;
-  margin-top: 90vh;
+  margin-top: 89vh;
+  @extend %hazy-box;
+
 }
 
 
