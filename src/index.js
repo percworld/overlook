@@ -1,4 +1,4 @@
- 
+
 
 import './css/reset.scss';
 import './css/base.scss';
@@ -32,6 +32,7 @@ const getRooms = () => {
 const getBookings = () => {
   return fetch('http://localhost:3001/api/v1/bookings')
   .then(response => response.json())
+  //.then( if !err.==ok)
   .catch((err) => alert(`This data is not available.  Server says ${err}`))
 }
 

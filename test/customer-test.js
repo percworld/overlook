@@ -33,11 +33,11 @@ describe('Customer', function() {
 
       expect(customer.myBookings).to.deep.equal([
         {
-          id: "5fwrgu4i7k55hl6t7",
-          userID: 1,
-          date: "2020/02/16",
-          roomNumber: 4,
-          roomServiceCharges: []
+          date: "2020/02/05",
+          id: "5fwrgu4i7k55hl6t8",
+          roomNumber: 12,
+          roomServiceCharges: [],
+          userID: 1
         }
       ]);
     });
@@ -47,7 +47,7 @@ describe('Customer', function() {
       customer.fillBookings(bookings);
       customer.fillTotalSpent(rooms);
 
-      expect(customer.moneySpent).to.deep.equal(429.44);
+      expect(customer.moneySpent).to.deep.equal(231.46);
     });
   });
 });

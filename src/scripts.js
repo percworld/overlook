@@ -7,7 +7,7 @@ const updates = {
 
   onLoad: (repoHotel) => {
     hotel = repoHotel;
-    //$('.')
+    //$('.sdgd').html(    )
 
 
   }
