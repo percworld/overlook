@@ -2,20 +2,28 @@
 
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 $opaque: 0.9;
+$green: green;
 
 %hazy-box {
   background-color: white;
   opacity: $opaque;
   border-radius: 12px;
-  color: green;
-
+  color: $green
 }
 
 %flex-cont {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
 
+%button {
+  width: 9em;
+  height: 1.7em;
+  font-size: 31px;
+  font-weight: bolder;
+  background-color: $green;
+  color: white
 }
 
 html {
@@ -39,17 +47,17 @@ body {
 
 
 header {
-  font-size: 68px;
-  width: 82vw;
+  font-size: 78px;
+  width: 100vw;
   height: 2.25em;
-  margin-top: 10vh;
+  margin-top: 12vh;
   padding-top: 7vh;
   @extend %flex-cont;
   // &:--
   .hotel-image {
-    margin-top: -3vh;
-    width: 80vw;
-    height: 23vh
+    margin-top: -5vh;
+    max-width: 88vw;
+    height: 27vh
   }
   h1 {
 
@@ -74,8 +82,8 @@ header {
 // Welcome and bookings area
 .info-area {
   display: block;
-  margin-top: 10em;
-  height: 9em;
+  margin-top: 8em;
+  height: 15em;
   width: 100%;
   @extend %hazy-box;
   @extend %flex-cont;
@@ -87,33 +95,86 @@ header {
 .card-container {
   //@extend %flex-cont
   .stamps {
+    margin-top: .5em;
     display: inline-flex;
-    justify-content: flex-end;
+    justify-content: space-around;
+    width: 100%;
+    height: 7vh;
+  }
+  .stamp {
+    width: 6em;
+    height: 2em;
+    margin-left: -7em;
+    // position: relative
   }
 }
 
-#starStamp {
-  background-image: url(../images/hp_gold_star.svg);
+%status-bar {
+  height: 1em;
+  font-size: 42px;
+  display: inline-flex;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.status-bar {
+  margin-top: .5em;
+  @extend %status-bar
+}
+
+.history-bar {
+  text-decoration: underline;
+  text-decoration-style: wavy;
+
+  @extend %status-bar
+}
+
+%stamp {
   background-repeat: no-repeat;
   background-size: contain;
   // or cover;
   position: relative;
   left: 15vw;
   width: 100%;
-  height: 100%;
+  height: 2em;
+}
+#starStamp {
+  background-image: url(../images/hp_gold_star.svg);
+  @extend %stamp
 
 }
-#postStamp {
+#staysStamp {
   background-image: url(../images/postal-service-stamp-1.svg);
+  @extend %stamp
+}
+
+.search-button {
+  @extend %button
+}
+
+.bookings-card {
+  margin-top: .5em;
+  .bookings {
+    padding: .5em;
+  }
+  .bookings-statement {
+    text-decoration: underline overline;
+    margin-top: 1em;
+  }
 }
 
 footer {
   text-align: center;
-  font-size: 32px;
+  font-size: 34px;
   width: 100%;
   height: 9vh;
   position: absolute;
   bottom: 0;
+  h3 {
+    padding: .22em;
+    text-decoration: overline;
+    text-decoration-style: wavy;
+  }
   @extend %hazy-box;
 }
 
