@@ -3,8 +3,10 @@
 import './css/reset.scss';
 import './css/base.scss';
 import './css/styles.scss';
-import './images/zulu_beadwork.jpg'
-
+import './images/zulu_beadwork.jpg';
+import './images/ndebele_woman.jpg';
+import './images/hp_gold_star.svg';
+import './images/postal-service-stamp-1.svg';
 import updates from './scripts';
 import Hotel from './Hotel';
 
@@ -16,7 +18,7 @@ const getCustomers = () => {
 
 
 const getOneCustomer = (id) => {
-  return fetch(`http://localhost:3001/api/v1/customers${id}`)
+  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
     .then(response => response.json())
     .catch((err) => alert(`This data is not available.  Server says ${err}`))
 }
@@ -56,8 +58,7 @@ const deleteBooking = (id) => {
       method:'DELETE',
       headers: {
         'Content-type': 'application/json'
-      },
-      body: JSON.stringify(),
+      }
     })
     .then(response => response.json())
     .catch((err) => alert(`This booking was not deleted.  Server says ${err}`));

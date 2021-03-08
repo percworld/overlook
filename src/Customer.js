@@ -1,16 +1,15 @@
 //import Inquiry from './Inquiry'
 // Manager is a child
 class Customer {
-  constructor(person ) {
+  constructor(person) {
     this.id = person.id;
     this.name = person.name;
-    this.myBookings = [];
     this.moneySpent = 0;
 
   }
 
   fillBookings(bookings) {
-    //this.inquiry = new Inquiry();
+    this.myBookings = [];
     bookings.forEach(booking => {
       if (booking.userID === this.id) {
         this.myBookings.push(booking);

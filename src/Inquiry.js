@@ -34,16 +34,15 @@ class Inquiry {
     //   return `You may have entered a past date. Try ${today.toLocaleString("en-US")} or a future date`;
     // } else {
     this.setAvailableByData(bookings, bookingInputDay)
-    // if (!this.availableRooms[0]) {
-    //   return false;
-    // }
-    // return true;
-    //console.log('AVAIL: ',this.availableRooms)
-    return this.roomsAvailable;   //I will need this?
+    if (!this.availableRooms[0]) {
+      return false;
+    }
+    return true;
+    //return this.roomsAvailable;   //I will need this?
   }
 
   setAvailableByData(bookings, bookingInputDay) {
-    this.availableRooms = this.rooms.map(room => room); //HELLLP JOEL!
+    this.availableRooms = [...this.rooms]
     this.rooms.forEach((room, index) => {
       bookings.forEach(booking => {
         if (booking.date === bookingInputDay && room.number === booking.roomNumber) {
@@ -55,8 +54,8 @@ class Inquiry {
   }
 
   arrangeVacancies() {
-    const values = this.unavailableRooms.map(room => JSON.stringify(room));
-    values.forEach(value => {
+    const strings = this.unavailableRooms.map(room => JSON.stringify(room));
+    strings.forEach(value => {
       let found = this.availableRooms.find(room => value === JSON.stringify(room));
         if (found) {
           //console.log('FOUND: ',found)
@@ -65,36 +64,12 @@ class Inquiry {
           //console.log('AVAIL: ',this.availableRooms)
         }
     });
-    // this.availableRooms.filter(availableRoom, index => {
-    //   return
-    // })
-    //   this.availableRooms.splice([index], 1);
-
-
-    // return bookings.reduce((available, booking) => {
-    //   rooms.forEach(room => {
-    //     (booking.date === bookingInputDay
-    //       && room.number === booking.roomNumber) {
-    //         this.unavailableRooms.push(room);
-    //         // console.log("TTTTTT")
-    //         // console.log(this.unavailableRooms)
-    //       } else {
-    //         if (!available.includes(room) && booking.date !== bookingInputDay
-    //           && room.number !== booking.roomNumber) {
-    //
-    //             available.push(room)
-    //           }
-    //         }
-    //   });
-    //   return available;
-    // }, []);
   }
 
   getRoomsByType(type) {
     //this.availableRooms = this.checkAvailable(bookings, bookingInputDay)
-      // .filter(room => room.roomType === type);
+    // .filter(room => room.roomType === type);
     return this.availableRooms.filter(room => room.roomType === type);
-    //console.log('LINE 70 ROOMS AVAILABLE: ', this.availableRooms)
   }
 }
 export default Inquiry;

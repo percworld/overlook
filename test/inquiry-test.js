@@ -6,8 +6,6 @@ import Inquiry from '../src/Inquiry'; // may not need custs
 
 let customer;
 let inquiry;
-let today;
-let room1 = rooms[0];
 let roomType = "single room";
 
 describe('Customer', function() {
@@ -15,7 +13,7 @@ describe('Customer', function() {
   beforeEach( () => {
     customer = new Customer(customers[0])
     inquiry = new Inquiry(rooms, bookings);
-    today = inquiry.getToday();//2016/05/03 =new Date(getToday())
+
   });
 
   it('should instantiate an Inquiry', () => {
@@ -69,10 +67,10 @@ describe('Customer', function() {
   //   });
   // });
 
-  it('should have a date', () => {
-
-    expect(typeof inquiry.date).to.deep.equal('string');
-  });
+  // it('should have a date', () => {
+  //
+  //   expect(typeof inquiry.date).to.deep.equal('string');
+  // });
 
   it('should have a list of zero available rooms by default', () => {
 
@@ -87,7 +85,7 @@ describe('Customer', function() {
   describe('Inquiry methods', () => {
 
     it('should know if a room is unavailable', () => {
-
+      inquiry = new Inquiry(rooms, bookings);
       inquiry.checkAvailable(bookings, "2020/01/11");
 
       expect(inquiry.unavailableRooms).to.have.a.lengthOf(1);
@@ -104,8 +102,6 @@ describe('Customer', function() {
     });
 
     it('should know if a room is available', () => {
-      //inquiry = new Inquiry(rooms, bookings);
-      //SKIP THIS TEST TO PASS TEST
 
       inquiry.checkAvailable(bookings, "2020/04/22")
 
@@ -117,7 +113,7 @@ describe('Customer', function() {
 
     });
 
-    it('should know if a room is unavailable', () => {
+    it('should know if a room is still unavailable', () => {
 
       inquiry.checkAvailable(bookings, "2020/02/16")
 
@@ -135,8 +131,8 @@ describe('Customer', function() {
       ]);
     });
 
-    it('should filter by room TYPE', () => {
-//console.log(inquiry.getRoomsByType(bookings, "residential suite", "2020/02/16"))
+    it('should filter by room type', () => {
+
       inquiry.checkAvailable(bookings, "2020/04/22")
 
       expect(inquiry.getRoomsByType("single room")).to.have.a.lengthOf(4);

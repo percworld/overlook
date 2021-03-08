@@ -9,19 +9,20 @@ describe('Customer', function() {
   beforeEach( () => {
     customer = new Customer(customers[0])
 
-  })
+  });
+  
   it('should instantiate a Customer', function() {
     expect(customer).to.be.an.instanceOf(Customer);
   });
+
   it('should have an id', function() {
     expect(customer.id).to.deep.equal(1)
   });
+
   it('should have a name', function() {
     expect(customer.name).to.deep.equal("Leatha Ullrich")
   });
-  it('should have a default list of bookings', function() {
-    expect(customer.myBookings).to.deep.equal([]);
-  });
+
   it('should have a default amount of money spent', function() {
     expect(customer.moneySpent).to.deep.equal(0);
   });
