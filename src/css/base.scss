@@ -124,7 +124,7 @@ header {
 
 .history-bar {
   text-decoration: underline;
-  text-decoration-style: wavy;
+  text-decoration-style:dotted;
 
   @extend %status-bar
 }
