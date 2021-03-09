@@ -22,6 +22,7 @@ const updates = {
 
   showLogin: () => {
     updates.displayLogin();
+    
     // $('.')
   },
 

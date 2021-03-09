@@ -98,20 +98,38 @@ header {
 /* Login Container */
 
 .login-area {
-  @include booking-container(53px);
+  @include booking-container(54px);
   height: 10em;
-  .login {
-    margin-top: 15%;
-    height: 40%;
-    width: 60%;
-    font-size: 48px;
+  #usernameLabel {
+    display: flex;
+    margin-left: 30%;
+    font-size: 42px;
+    margin-bottom: 1em;
+  }
+  #username {
+    font-size: 41px;
+    width: 86%;
+    text-align: center;
 
   }
+  .login {
+    margin-top: 7%;
+    height: 40%;
+    width: 60%;
+    font-size: 21px;
+
+  }
+  input {
+    //display: none;
+    width:40%;
+  }
   .login-button {
-    font-size: 48px;
+    margin-top: 1em;
+    font-size: 44px;
   }
   .note {
-    font-size: 16px;
+    margin-top: 2em;
+    font-size: 31px;
   }
 }
 
