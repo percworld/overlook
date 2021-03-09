@@ -67,9 +67,9 @@ class Inquiry {
   }
 
   getRoomsByType(type) {
-    //this.availableRooms = this.checkAvailable(bookings, bookingInputDay)
-    // .filter(room => room.roomType === type);
-    return this.availableRooms.filter(room => room.roomType === type);
+    return this.availableRooms.filter(room => {
+      return room.roomType.toLowerCase() === type.toLowerCase);
+    });
   }
 }
 export default Inquiry;
