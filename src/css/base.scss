@@ -15,7 +15,8 @@ body {
   @extend %flex-cont;
   position: relative;
   #wrap-container {
-      padding-bottom: 2.5rem
+      padding-bottom: 2.5rem;
+      height: 100vh;
   }
 }
 
@@ -67,18 +68,18 @@ header {
 
 .dropdown {
   margin-top: 6em;
-  height: 34em;
+  height: 21em;
   background-color: white;
   opacity: $opaque;
   //z-index: 1;
-  display: none;
+  // visibility: hidden;
 
 }
 
 .bookings-card {
   margin-top: .5em;
   height: 34em;
-  display:none;
+  visibility: hidden;
   .bookings {
     margin-left: 2em;
     width: 76vw;
@@ -91,12 +92,11 @@ header {
   .booking {
     padding: 10px;
   }
-  display: hidden;
+
 
 }
-  .see-bookings:hover .bookings-card {
-    display: flex;
-    flex-direction: row;
+  .see-bookings:hover .dropdown {
+    visibility: visible;
 
     // @extend %flex-cont;
     // margin-top: 0;
@@ -176,6 +176,10 @@ footer {
     text-decoration-style: wavy;
   }
   @extend %hazy-box;
+}
+
+.hidden {
+  visibility:hidden;
 }
 
 //@media
