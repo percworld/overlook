@@ -14,36 +14,47 @@ let hotel, user, bookings, today, rooms, inquiry;
 const updates = {
 
   onLoad: (repoHotel) => {
-    hotel = new Hotel(repoHotel.guests.customers, repoHotel.rooms.rooms, repoHotel.confirmations.bookings);
-    user = new Customer(hotel.guests[1]);
+    hotel = new Hotel(repoHotel.guests.customers,
+      repoHotel.rooms.rooms,
+      repoHotel.confirmations.bookings);
     updates.showLogin();
-    //updates.updateInfoCard();
   },
 
   showLogin: () => {
     updates.displayLogin();
     $('.login-button').click(updates.loginCustomer);
-    // $('.')
   },
 
   loginCustomer: () => {
     let username = $('#username:text').val();
-    console.log(username)
     let password = $('#password:text').val();
-    console.log(password)
     updates.verifyPassword(username, password)
-    $('#username').val(' ');
-    updates.updateInfoCard();
   },
 
   verifyPassword: (username, password) => {
-
+    if (password === 'overlook2021') {
+      const userNameSplit = username.split('');
+      const userID = userNameSplit.slice(userNameSplit.length - 2).join('');
+      const getOneCustomer = (userID) => {
+        return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
+          .then(response => response.json())
+          .then(response => updates.createUser(response))
+          .catch((err) => alert(`This data is not available.  Server says ${err}`))
+      }
+      getOneCustomer(userID);
+      $('#username').val(' ');
+      $('#password').val(' ');
+    } else {
+      $('.password-wrong').text("Incorrect password. Please try again");
+      updates.showLogin();
+    }
   },
 
-  assignUsername: (username) => {
-
+  createUser: (id) => {
+    const customerMatch = hotel.guests.find(customer => customer.id === id.id);
+    user = new Customer(customerMatch);
+    updates.updateInfoCard();
   },
-
 
   updateInfoCard: () => {
     updates.displayInfoCard();
@@ -74,11 +85,13 @@ const updates = {
   },
 
   displayInfoCard: () => {
+    $('.login-area').hide();
     $('.dropdown').hide();
     $('.room-list-container').hide();
     $('.booking-area').hide();
     $('.info-area').show();
     $('.see-bookings').show();
+    $('footer').show();
   },
 
   displayLogin: () => {
@@ -87,7 +100,7 @@ const updates = {
     $('.booking-area').hide();
     $('.info-area').hide();
     $('.see-bookings').hide();
-    $('.login-container').show();
+    //$('.login-container').show();
     $('footer').hide();
   },
 

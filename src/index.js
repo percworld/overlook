@@ -18,11 +18,11 @@ const getCustomers = () => {
 }
 
 
-const getOneCustomer = (id) => {
-  return fetch(`http://localhost:3001/api/v1/customers/${id}`)
-    .then(response => response.json())
-    .catch((err) => alert(`This data is not available.  Server says ${err}`))
-}
+// const getOneCustomer = (id) => {
+//   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
+//     .then(response => response.json())
+//     .catch((err) => alert(`This data is not available.  Server says ${err}`))
+// }
 
 
 const getRooms = () => {
@@ -76,4 +76,4 @@ const getAllData = () => {
 }
 getAllData();
 
-export default { getAllData, getOneCustomer, deleteBooking };
+export default { getAllData, deleteBooking };
