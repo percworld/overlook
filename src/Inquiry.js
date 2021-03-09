@@ -68,7 +68,7 @@ class Inquiry {
 
   getRoomsByType(type) {
     return this.availableRooms.filter(room => {
-      return room.roomType.toLowerCase() === type.toLowerCase);
+      return room.roomType.toLowerCase() === type.toLowerCase();
     });
   }
 }
