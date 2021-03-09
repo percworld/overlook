@@ -37,7 +37,12 @@ const updates = {
       const userID = userNameSplit.slice(userNameSplit.length - 2).join('');
       const getOneCustomer = (userID) => {
         return fetch(`http://localhost:3001/api/v1/customers/${userID}`)
-          .then(response => response.json())
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
+            return response.json();
+          })
           .then(response => updates.createUser(response))
           .catch((err) => alert(`This data is not available.  Server says ${err}`))
       }
@@ -175,7 +180,12 @@ const updates = {
           },
           body: JSON.stringify(payload),
         })
-        .then(response => response.json())
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(response.statusText);
+          }
+          return response.json();
+        })
         .then(response => updates.postNotice(response, roomNumber))
         .catch((err) => alert(`This booking was not added.  Server says ${err}`));
     }
