@@ -22,9 +22,28 @@ const updates = {
 
   showLogin: () => {
     updates.displayLogin();
-    
+    $('.login-button').click(updates.loginCustomer);
     // $('.')
   },
+
+  loginCustomer: () => {
+    let username = $('#username:text').val();
+    console.log(username)
+    let password = $('#password:text').val();
+    console.log(password)
+    updates.verifyPassword(username, password)
+    $('#username').val(' ');
+    updates.updateInfoCard();
+  },
+
+  verifyPassword: (username, password) => {
+
+  },
+
+  assignUsername: (username) => {
+
+  },
+
 
   updateInfoCard: () => {
     updates.displayInfoCard();
@@ -115,11 +134,9 @@ const updates = {
         <br>
         <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
         let targetRoom = roomsFiltered[index]
-        //$(`#${index}`).click(updates.assignRoom(targetRoom.number));
       });
       const bookButton = document.querySelector('.book-button-container');
       bookButton.addEventListener('click', updates.assignRoom)
-      //$('#${id}').addEventListener('click', assignRoom(id));
     } else {
       $('.book-button-container').text(`We apologize fiercely! No rooms are
        available on this date that match your wishes!`)
@@ -162,6 +179,7 @@ const updates = {
   evaluateDateInput: () => {
     console.log('DATE: ', $('.picker val()'))
   }
+
 }
 
 export default updates;

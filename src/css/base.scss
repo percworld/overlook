@@ -99,23 +99,22 @@ header {
 
 .login-area {
   @include booking-container(54px);
-  height: 10em;
-  #usernameLabel {
+  height: 12em;
+  .usernameLabel {
     display: flex;
-    margin-left: 30%;
+    margin-left: 28%;
     font-size: 42px;
-    margin-bottom: 1em;
-  }
-  #username {
-    font-size: 41px;
-    width: 86%;
+    margin-bottom: .5em;
+    max-width: 60%;
     text-align: center;
-
   }
+  #usernameLabel {
+    font-size: 37px;
+  }
+
   .login {
-    margin-top: 7%;
     height: 40%;
-    width: 60%;
+    width: 113%;
     font-size: 21px;
 
   }
@@ -124,12 +123,12 @@ header {
     width:40%;
   }
   .login-button {
-    margin-top: 1em;
+    margin-top: .5em;
     font-size: 44px;
   }
   .note {
-    margin-top: 2em;
-    font-size: 31px;
+    margin-top: 3em;
+    font-size: 35px;
   }
 }
 
