@@ -6,18 +6,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <h1>Motel Ubuntu</h1>
-      <h2>Motorbike parking available</h2>
-      <h3>Budget Safari Excursions</h3>
-    </header>
-    <section class="room-booking">
-Room booking
+    <section id="wrap-container">
+      <header>
+        <img class="hotel-image" src="./images/ndebele_woman.jpg" alt="woman visiting site">
+        <div class="hotel-name-box">
+          <h1 class="hotel-names">Motel</h1>
+          <h1 class="hotel-name">Ubuntu</h1>
+        </div>
+      </header>
+      <article class="dropdown">
+
+        <div class="bookings-card">
+          <section class="bookings">
+            <!-- bookings get inserted here -->
+          </section>
+        </div>
+      </article>
+      <button class="see-bookings">SEE MY BOOKINGS</button>
+
+      <section class="info-area">
+        <section class="greeting"></section>
+        <article class="card-container" id="user-entries">
+          <div class="stamps">
+            <div class="stamp">
+              <svg id="starStamp">
+              </svg>
+            </div>
+            <div class="stamp">
+              <svg id="staysStamp">
+              </svg>
+            </div>
+          </div>
+          <section class="status-bar">
+            <p>Your investment in us</p>
+            <p>Your latest stay here</p>
+          </section>
+          <section class="history-bar">
+            <p class="investment">$432.09</p>
+            <p class="last-date">09/02/2020</p>
+          </section>
+          <div class="button">
+            <button type="button" class="search-button" name="search">SEARCH ROOMS</button>
+          </div>
+        </article>
+      </section>
     </section>
-    <img src="./images/zulu_beadwork.jpg" alt="beadwork by zulu" height="100vh" width="100vh">
-    <!-- <img src="./images/ubuntu.jpg" alt="Ubuntu children in a circle" height="100vh" width="100vh"> -->
-    <!-- <img src="./images/ndebele_woman.jpg" alt="An Ndebele woman at residence" height="100vh" width="100vh"> -->
-
-
   </body>
+  <footer>
+    <h3>Budget Safari Excursions upon request</h3>
+    <h3>Motorbike parking available</h3>
+    <h3>Enjoy Your Stay!</h3>
+  </footer>
 </html>

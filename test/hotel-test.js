@@ -33,7 +33,7 @@ describe('Hotel', function() {
 
     expect(hotel.confirmations[0]).to.be.an('object');
     expect(hotel.confirmations[1].id).to.deep.equal("5fwrgu4i7k55hl6t5");
-    expect(hotel.confirmations[2].date).to.deep.equal("2020/02/16");
+    expect(hotel.confirmations[2].date).to.deep.equal("2020/01/10");
   });
 
 
