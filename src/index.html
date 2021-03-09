@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
   </head>
   <body>
-    <section id="wrap-container">
+    <section class="wrap-container id="wrap-container">
       <header>
         <img class="hotel-image" src="./images/ndebele_woman.jpg" alt="woman visiting site">
         <div class="hotel-name-box">
@@ -14,16 +14,30 @@
           <h1 class="hotel-name">Ubuntu</h1>
         </div>
       </header>
-      <article class="dropdown">
-
-        <div class="bookings-card">
-          <section class="bookings">
-            <!-- bookings get inserted here -->
-          </section>
+      <div class="dropdown-container">
+        <article class="dropdown">
+          <div class="bookings-card">
+            <section class="bookings">
+              <!-- bookings get inserted here -->
+            </section>
+          </div>
+        </article>
+      </div>
+      <button class="see-bookings">YOUR BOOKINGS</button>
+<!-- INFO AREA -->
+      <section class="login-area">
+        <div>
+          <p>Welcome back to Motel Ubuntu!</p><br>
+          <p>Please sign in to continue.</><br>
         </div>
-      </article>
-      <button class="see-bookings">SEE MY BOOKINGS</button>
-
+        <div class="login">
+          <label for="login-field">Username:</label>
+          <input type="text" id="login-field" name="login-field" placeholder="Enter Username">
+          <button type="button" class="login-button" name="button">LOGIN</button>
+        </div>
+          <p class="note"> Don't miss out on our Safari packages, details inside!</p>
+      </section>
+<!-- INFO AREA -->
       <section class="info-area">
         <section class="greeting"></section>
         <article class="card-container" id="user-entries">
@@ -50,14 +64,54 @@
           </div>
         </article>
       </section>
-      <section class="booking-area ">
+      <section class="booking-area">
+<!-- BOOKING SECTION -->
+        <article class="calendar-container">
+          <div class="calendar">
+            <!-- <label for="picker" label="calendar">Date:</label> -->
+            <input type="text" name="calendar" value="" id="picker" placeholder="Date:">
+          </div>
+          <section class="tag-container">
+            <fieldset class="bidet-tag">
+              <p>Please Choose a Date and </p>
+              <p>Make Your Room Selection:</p>
+            </fieldset>
+            <form class="room-tag" id="roomType">
+              <br>
+              <p class="room-type">Room Type:</p>
+              <br>
+              <input type="radio" id="residential" name="type">
+              <label for="residential">Residential Suite</label>
+              <input type="radio" id="suite" name="type">
+              <label for="suite">Suite</label>
+              <input type="radio" id="junior" name="type">
+              <label for="junior">Junior Suite</label>
+              <input type="radio" id="single" name="type">
+              <label for="single">Single Room</label>
+            </form>
+          </section>
+        </article>
+        <article class="button-container">
+          <button type="button" class="check-button" name="button">Check Availabilities</button>
+        </article>
+      </section>
+      <p>Choose from the options below:</p>
+      <section class="room-list-container">
+        <div class="book-button-container">
+<!-- GETS FILLED WITH BOOK BUTTONS -->
 
+        </div>
+
+
+        <div class="room-list">
+<!-- FILLED BY ROOM ENtRIES -->
+        </div>
+        <button type="button" class="home-button">Back to Home</button>
       </section>
     </section>
   </body>
   <footer>
     <h3>Budget Safari Excursions upon request</h3>
     <h3>Motorbike parking available</h3>
-    <h3>Enjoy Your Stay!</h3>
   </footer>
 </html>

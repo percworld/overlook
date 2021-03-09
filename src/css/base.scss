@@ -1,7 +1,7 @@
 @import 'partial.scss';
-
+@import '~js-datepicker/src/datepicker';
 html {
-  background: yellow;
+  background: $yellow;
   background-image: url('../images/zulu_beadwork.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -28,7 +28,6 @@ header {
   margin-top: 12vh;
   padding-top: 7vh;
   @extend %flex-cont;
-  // &:--
   .hotel-image {
     margin-top: -5vh;
     max-width: 88vw;
@@ -53,33 +52,34 @@ header {
     margin-top: -22vh;
     @extend %hazy-box;
   }
-
 }
+
 /* See Bookings Dropdown */
+
 .see-bookings {
   position: relative;
   display: inline-block;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  margin: 0 0 0 10em;
+  box-shadow: $button-shadow;
+  margin: 0 0 0 8em;
   @extend %button;
   width: 12em;
   height: 2em;
 }
-
-.dropdown {
+.dropdown-container {
   margin-top: 6em;
   height: 21em;
-  background-color: white;
-  opacity: $opaque;
-  //z-index: 1;
-  visibility: hidden;
-
+  background-color: transparent;
+  .dropdown {
+    margin-top: 6em;
+    height: 21em;
+    background-color: white;
+    opacity: $opaque;
+  }
 }
 
 .bookings-card {
   margin-top: .5em;
   height: 34em;
-  visibility: hidden;
   .bookings {
     margin-left: 2em;
     width: 76vw;
@@ -88,37 +88,37 @@ header {
     justify-content: space-between;
     flex-wrap: wrap;
     font-size: 33px;
+    height: 7em;
+    overflow:scroll;
   }
   .booking {
     padding: 10px;
   }
-
-
 }
-  .see-bookings:hover
-  .dropdown
-  .bookings-card  {
-    visibility: visible;
+/* Login Container */
 
-    // @extend %flex-cont;
-    // margin-top: 0;
-    // height: 36vh;
-    // width: 63%;
+.login-area {
+  @include booking-container(53px);
+  height: 10em;
+  .login {
+    margin-top: 15%;
+    height: 40%;
+    width: 60%;
+    font-size: 48px;
 
   }
+  .login-button {
+    font-size: 48px;
+  }
+  .note {
+    font-size: 16px;
+  }
+}
 
 /* Welcome and info container /bookings area */
+
 .info-area {
-  display: block;
-  position: relative;
-  height: 8.6em;
-  width: 100%;
-  @extend %hazy-box;
-  @extend %flex-cont;
-  font-size: 46px;
-  text-align: center;
-  padding-top: 1em;
-  font-size: 61px;
+  @include booking-container(61px);
 }
 
 .card-container {
@@ -133,7 +133,6 @@ header {
     width: 6em;
     height: 2em;
     margin-left: -5em;
-    // position: relative
   }
 }
 
@@ -161,17 +160,88 @@ header {
 
 .search-button {
   @extend %button;
+  font-size: 34px;
+  box-shadow: $button-shadow;
+}
+/* User Field Entry (Room Type Choices and Date) */
+.booking-area {
+  @include booking-container(35px);
+  height: 14em;
+  .bidet-box {
+    margin-left: 18px;
+    width: 30vw;
+  }
+  // .calendar-container{
+  // }
 }
 
-/* Arrows to change page */
+.calendar-container {
+  padding: 8px;
+  display: inline-flex;
+  width: 90%;
+  .calendar {
+  width: 9em;
+  height: 8em;
+  background-color: red;
+  }
+}
+
+input[type="radio"] {
+  visibility : hidden;
+}
+
+.tag-container {
+    width: 45vw;
+    label {
+    padding: 2em;
+    cursor: pointer;
+    border: none;
+    padding: .5vh;
+    color: #000000;
+    font-size: 2vh;
+  }
+}
+
+.tag-label-checked,
+.room-tag > label:hover,
+.bidet-tag > label:hover {
+  background-color: #92a8d1;
+  font-size: 2.5vh;
+}
+
+.button-container {
+  margin-top: 3vh;
+  .check-button {
+    @extend %button;
+    height: 3em;
+  }
+}
+
+/* User Choice of Room Container / BOOKING */
+
+.room-list-container {
+  @include booking-container(45px);
+  height: 21em;
+  .book-button-container {
+
+  }
+  .room-list {
+    font-size: 25px;
+  }
+}
+
+.home-button {
+  @extend %button
+}
 
 footer {
   text-align: center;
   font-size: 34px;
   width: 100%;
   height: 9vh;
-  position: absolute;
-  bottom: 1em;;
+  position: relative;
+  bottom: -4.44em;
+  margin-left: 4.44vw;
   h3 {
     padding: .22em;
     text-decoration: overline;
@@ -184,4 +254,24 @@ footer {
   visibility:hidden;
 }
 
-//@media
+//@media queries
+/* TABLET */
+
+@media screen and (max-width: 630px) {
+  .see-bookings {
+  }
+}
+
+
+@media screen and (min-width: 980px) {
+    .wrap-container {
+      width: 90%;
+    }
+    h3 {
+      display: flex;
+      flex-direction:row;
+      bottom:0em;
+      height: 2vh;
+      text-decoration: none;
+    }
+  }
