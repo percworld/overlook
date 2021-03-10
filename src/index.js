@@ -17,42 +17,28 @@ const getCustomers = () => {
     .catch((err) => alert(`This data is not available.  Server says ${err}`))
 }
 
-
-// const getOneCustomer = (id) => {
-//   return fetch(`http://localhost:3001/api/v1/customers/${id}`)
-//     .then(response => response.json())
-//     .catch((err) => alert(`This data is not available.  Server says ${err}`))
-// }
-
-
 const getRooms = () => {
   return fetch('http://localhost:3001/api/v1/rooms')
-    .then(response => response.json())
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
     .catch((err) => alert(`This data is not available.  Server says ${err}`))
 }
 
-
 const getBookings = () => {
   return fetch('http://localhost:3001/api/v1/bookings')
-  .then(response => response.json())
-  //.then( if !err.==ok)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    return response.json();
+  })
   .catch((err) => alert(`This data is not available.  Server says ${err}`))
 }
 
-// const addBooking = () => {
-//   return fetch('http://localhost:3001/api/v1/bookings',
-//     {
-//       method:'POST',
-//       headers: {
-//         'Content-type': 'application/json'
-//       },
-//       body: JSON.stringify(
-//         { "userID": 48, "date": "2019/09/23", "roomNumber": 4 }
-//       ),
-//     })
-//     .then(response => response.json())
-//     .catch((err) => alert(`This booking was not added.  Server says ${err}`));
-// }
 const deleteBooking = (id) => {
   return fetch(`http://localhost:3001/api/v1/bookings/${id}`,
     {
@@ -61,7 +47,12 @@ const deleteBooking = (id) => {
         'Content-type': 'application/json'
       }
     })
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response.json();
+    })
     .catch((err) => alert(`This booking was not deleted.  Server says ${err}`));
 }
 
@@ -74,6 +65,7 @@ const getAllData = () => {
   })
   .catch((err) => alert(`FAIL: This data is not available.  Server says ${err}`));
 }
+
 getAllData();
 
 export default { getAllData, deleteBooking };
