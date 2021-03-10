@@ -142,39 +142,9 @@ const updates = {
 
   fillRoomsByInput: () => {
     $('.see-bookings').hide();
-    userInputDate = updates.formatDate($('#picker:text').val())
-    inquiry.checkAvailable(bookings, userInputDate);
-    let roomsFiltered;
-    if($('#residential').is(':checked')) {
-      roomsFiltered = inquiry.getRoomsByType('residential');
-     }
-    if($('#suite').is(':checked')) {
-      roomsFiltered = inquiry.getRoomsByType('suite')
-     }
-    if($('#junior').is(':checked')) {
-      roomsFiltered = inquiry.getRoomsByType('junior suite')
-    }
-    if($('#single').is(':checked')) {
-      roomsFiltered = inquiry.getRoomsByType('single room')
-    }
-    if(roomsFiltered.length) {
-      roomsFiltered.forEach((room, index) => {
-      $('.book-button-container').append(`
-        <br>
-        <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
-        let targetRoom = roomsFiltered[index]
-      });
-      updates.modifyDateTemplate();
-      const bookButton = document.querySelector('.book-button-container');
-      bookButton.addEventListener('click', updates.assignRoom)
-      } else {
-        $('.book-button-container').text(`We apologize fiercely! No rooms are
-          available on this date that match your wishes!`)
-      }
-  },
-
-  modifyDateTemplate: () => {
-    console.log(userInputDate)
+    inquiry.checkAvailable(bookings, today);
+    updates.filterRooms();
+    updates.evaluateDateInput;
   },
 
   assignRoom: (event) => {
@@ -206,8 +176,37 @@ const updates = {
 
   postNotice: (response, roomNumber) => {
     setTimeout(() => {
-      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${userInputDate}.  `)
-    }, 1000)
+      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${response}.  `)
+    }, 1500)
+  },
+
+  filterRooms: () => {
+    let roomsFiltered;
+    if($('#residential').is(':checked')) {
+      roomsFiltered = inquiry.getRoomsByType('residential');
+     }
+    if($('#suite').is(':checked')) {
+      roomsFiltered = inquiry.getRoomsByType('suite')
+     }
+    if($('#junior').is(':checked')) {
+      roomsFiltered = inquiry.getRoomsByType('junior suite')
+    }
+    if($('#single').is(':checked')) {
+      roomsFiltered = inquiry.getRoomsByType('single room')
+    }
+    if(roomsFiltered) {
+      roomsFiltered.forEach((room, index) => {
+      $('.book-button-container').append(`
+        <br>
+        <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
+        let targetRoom = roomsFiltered[index]
+      });
+      const bookButton = document.querySelector('.book-button-container');
+      bookButton.addEventListener('click', updates.assignRoom)
+    } else {
+      $('.book-button-container').text(`We apologize fiercely! No rooms are
+       available on this date that match your wishes!`)
+    }
   }
 }
 

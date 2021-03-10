@@ -4,7 +4,9 @@
 ## Motel Ubuntu Project
 #### **Contributors:** [Chuck Morris](https://github.com/percworld)
 ---
+
 ### Motel Ubuntu lies in the Drakensberg range of South Africa, where there is a heritage of hospitality and an instinct for a generosity.
+
 
 #### This app is designed to keep a hotel bookkeeping record and assist the customer in choosing and booking rooms while maintaining an account.  The users, hotel rooms, and bookings are hosted on a server and accessible through API calls.
 ---
