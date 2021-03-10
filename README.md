@@ -1,11 +1,11 @@
 ## Motel Ubuntu Project
 #### **Contributors:** [Chuck Morris](https://github.com/percworld)
 ---
-### Motel Ubuntu lies in the roots of South Africa, where there is a heritage of hospitality and an instinct for a generosity. 
+### Motel Ubuntu lies in the Mountains of South Africa, where there is a heritage of hospitality and an instinct for a generosity.
 
 #### This app is designed to keep a hotel bookkeeping record and assist the customer in choosing and booking rooms while maintaining an account.  #### The users, hotel rooms, and bookings are hosted on a server and accessible through API calls.
 ---
-#### Navigation of the app: 
+#### Navigation of the app:
 1. Login using the credentials listed below.
 
 
@@ -26,7 +26,7 @@
 3. Clone the backend API at https://github.com/turingschool-examples/overlook-api
 4. In a separate console window `cd` into the backend directory by running `npm install` then `npm start`
 5. Start the client with `npm start` in the root project directory
-6. navigate in your browser to http://localhost:8080/ 
+6. navigate in your browser to http://localhost:8080/
 
 ---
 #### Technologies:
@@ -38,16 +38,3 @@
 * JQuery
 
 ##### I enjoyed using [Postmaster] to balance calls to the API
-
-
-
-
-
-
-
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
-=======
-# overlook
-Hotel bookings
->>>>>>> f86b9f91df874035b0cacf27d70e2ca5ff647d67
