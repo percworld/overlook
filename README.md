@@ -1,3 +1,6 @@
+=======
+# overlook
+=======
 ## Motel Ubuntu Project
 #### **Contributors:** [Chuck Morris](https://github.com/percworld)
 ---
@@ -38,16 +41,3 @@
 * JQuery
 
 ##### I enjoyed using [Postmaster] to balance calls to the API
-
-
-
-
-
-
-
-
-If you _are_ done, you can follow [this procedure](./gh-pages-procedure.md) to get your project live on GitHub Pages.
-=======
-# overlook
-Hotel bookings
->>>>>>> f86b9f91df874035b0cacf27d70e2ca5ff647d67
