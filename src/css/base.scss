@@ -190,19 +190,18 @@ header {
     width: 30vw;
   }
   #picker {
-    font-size: 37px;
+    font-size: 39px;
     width: 8em;
     height: 2em;
   }
 
   .calendar-container{
     width: 92%;
-
   }
 }
 
 #picker {
-  font-size: 32px;
+  font-size: 30px;
   width: 8em;
 }
 
@@ -293,6 +292,7 @@ footer {
 @media screen and (max-width: 630px) {
   .footer {
     bottom: 0;
+  }
   .info-container {
     margin-left: 4em;
   }
@@ -312,4 +312,4 @@ footer {
       height: 2vh;
       text-decoration: none;
     }
-  }
+}

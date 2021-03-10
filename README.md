@@ -22,9 +22,7 @@
 #### Login Credentials
 * **username** - There are 50 user names available ranging from ```customer1``` to ```customer50```
 * **password** - all passwords are ```overlook2021```
----
-![](assets/README-6eac00aa.png)  ![](assets/README-1f662e1b.png)  ![](assets/README-2b3e00b9.png)  ![](assets/README-f9986e76.png)  ![](assets/README-a64b4303.png)  ![](assets/README-9d447d85.png)
----
+
 ### To Install:
 1. Clone down this repo and `cd` into the root directory.
 2. I the console, Install dependencies by running `npm install`
@@ -33,6 +31,9 @@
 5. Start the client with `npm start` in the root project directory
 6. navigate in your browser to http://localhost:8080/
 
+---
+![](assets/README-6eac00aa.png)  ![](assets/README-1f662e1b.png)  ![](assets/README-2b3e00b9.png)  ![](assets/README-f9986e76.png)  ![](assets/README-a64b4303.png)  ![](assets/README-9d447d85.png)
+---
 ---
 #### Technologies:
 ---

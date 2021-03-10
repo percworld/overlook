@@ -30,7 +30,7 @@ const updates = {
   },
 
   verifyPassword: (username, password) => {
-    if (password === 'overlook2021') {
+    //if (password === 'overlook2021') {
       const userNameSplit = username.split('');
       const userID = userNameSplit.slice(userNameSplit.length - 2).join('');
       const getOneCustomer = (userID) => {
@@ -42,40 +42,45 @@ const updates = {
             return response.json();
           })
           .then(response => updates.createUser(response))
-          .catch((err) => alert(`This data is not available.  Server says ${err}`))
+          .catch((err) => alert(`Password verify: This data is not available.  Server says ${err}`))
       }
       getOneCustomer(userID);
       $('#username').val(' ');
       $('#password').val(' ');
-    } else {
-      $('.password-wrong').text("Incorrect password. Please try again");
+  //  } else {
+  //    $('.password-wrong').text("Incorrect password. Please try again");
       updates.showLogin();
-    }
+  //  }
   },
 
   createUser: (id) => {
     const customerMatch = hotel.guests.find(customer => customer.id === id.id);
     user = new Customer(customerMatch);
+    const picker = datepicker('#picker', {
+    position: 'bl'
+    });
+    bookings = hotel.confirmations;
     updates.updateInfoCard();
   },
 
   updateInfoCard: () => {
     updates.displayInfoCard();
     $('.see-bookings').click(updates.showBookings);
-    const picker = datepicker('#picker', {
-      position: 'bl'
-    })
     $('.greeting').html(`
       <p>Hello ${user.name}, </p>
       <p>Welcome Back! </p>`);
-    bookings = hotel.confirmations;
     rooms = hotel.rooms;
     inquiry = new Inquiry(rooms, bookings);
     user.fillBookings(bookings);
-    user.fillTotalSpent(rooms)
-    $('.investment').text(`$${user.moneySpent.toFixed(2)}`)
+    user.fillTotalSpent(rooms);
+    $('.investment').text(`$${user.moneySpent.toFixed(2)}`);
     $('.last-date').text(`${user.myBookings[user.myBookings.length -1].date.toLocaleString("en-US")}`);
-    user.myBookings.forEach(booking => {
+    updates.displayBookings(user.myBookings);
+    $('.search-button').click(updates.showInputField);
+  },
+
+  displayBookings: (userBookings) => {
+    userBookings.forEach(booking => {
     $('.bookings').append(`
       <ul class="booking">
         <p>${rooms.find(room => {
@@ -85,7 +90,6 @@ const updates = {
       </ul>
       `)
     });
-    $('.search-button').click(updates.showInputField)
   },
 
   displayInfoCard: () => {
@@ -104,11 +108,11 @@ const updates = {
     $('.booking-area').hide();
     $('.info-area').hide();
     $('.see-bookings').hide();
-    //$('.login-container').show();
     $('footer').hide();
   },
 
   showBookings: () => {
+    updates.displayBookings(user.myBookings);
     $('.dropdown').show();
     $('.see-bookings').click(() => $('.dropdown').hide())
   },
@@ -142,9 +146,9 @@ const updates = {
 
   fillRoomsByInput: () => {
     $('.see-bookings').hide();
-    inquiry.checkAvailable(bookings, today);
+    userInputDate = updates.formatDate($('#picker:text').val())
+    inquiry.checkAvailable(bookings, userInputDate);
     updates.filterRooms();
-    updates.evaluateDateInput;
   },
 
   assignRoom: (event) => {
@@ -168,15 +172,16 @@ const updates = {
           }
           return response.json();
         })
-        .then(response => updates.postNotice(response, roomNumber))
+        .then(response => updates.postNotice(roomNumber))
         .catch((err) => alert(`This booking was not added.  Server says ${err}`));
     }
-    addBooking()
+    addBooking();
   },
 
-  postNotice: (response, roomNumber) => {
+  postNotice: (roomNumber) => {
+    user.myBookings.push({ "userID": user.id, "date": userInputDate, "roomNumber": parseInt(roomNumber) });
     setTimeout(() => {
-      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${response}.  `)
+      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${userInputDate}.  `)
     }, 1500)
   },
 
@@ -194,15 +199,20 @@ const updates = {
     if($('#single').is(':checked')) {
       roomsFiltered = inquiry.getRoomsByType('single room')
     }
+    updates.updateRooms(roomsFiltered);
+  },
+
+  updateRooms: (roomsFiltered) => {
     if(roomsFiltered) {
-      roomsFiltered.forEach((room, index) => {
-      $('.book-button-container').append(`
-        <br>
-        <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
-        let targetRoom = roomsFiltered[index]
-      });
-      const bookButton = document.querySelector('.book-button-container');
-      bookButton.addEventListener('click', updates.assignRoom)
+        $('.book-button-container').html("")
+        roomsFiltered.forEach((room, index) => {
+        $('.book-button-container').append(`
+          <br>
+          <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
+          let targetRoom = roomsFiltered[index]
+        });
+        const bookButton = document.querySelector('.book-button-container');
+        bookButton.addEventListener('click', updates.assignRoom)
     } else {
       $('.book-button-container').text(`We apologize fiercely! No rooms are
        available on this date that match your wishes!`)
