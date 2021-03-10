@@ -30,7 +30,7 @@ const updates = {
   },
 
   verifyPassword: (username, password) => {
-    if (password === 'overlook2021') {
+    //if (password === 'overlook2021') {
       const userNameSplit = username.split('');
       const userID = userNameSplit.slice(userNameSplit.length - 2).join('');
       const getOneCustomer = (userID) => {
@@ -47,10 +47,10 @@ const updates = {
       getOneCustomer(userID);
       $('#username').val(' ');
       $('#password').val(' ');
-    } else {
-      $('.password-wrong').text("Incorrect password. Please try again");
+  //  } else {
+  //    $('.password-wrong').text("Incorrect password. Please try again");
       updates.showLogin();
-    }
+  //  }
   },
 
   createUser: (id) => {
@@ -75,6 +75,11 @@ const updates = {
     user.fillTotalSpent(rooms)
     $('.investment').text(`$${user.moneySpent.toFixed(2)}`)
     $('.last-date').text(`${user.myBookings[user.myBookings.length -1].date.toLocaleString("en-US")}`);
+    updates.displayBookings()
+    $('.search-button').click(updates.showInputField)
+  },
+
+  displayBookings: () => {
     user.myBookings.forEach(booking => {
     $('.bookings').append(`
       <ul class="booking">
@@ -85,7 +90,6 @@ const updates = {
       </ul>
       `)
     });
-    $('.search-button').click(updates.showInputField)
   },
 
   displayInfoCard: () => {
