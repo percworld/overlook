@@ -42,7 +42,7 @@ const updates = {
             return response.json();
           })
           .then(response => updates.createUser(response))
-          .catch((err) => alert(`This data is not available.  Server says ${err}`))
+          .catch((err) => alert(`Password verify: This data is not available.  Server says ${err}`))
       }
       getOneCustomer(userID);
       $('#username').val(' ');
@@ -56,31 +56,32 @@ const updates = {
   createUser: (id) => {
     const customerMatch = hotel.guests.find(customer => customer.id === id.id);
     user = new Customer(customerMatch);
+    const picker = datepicker('#picker', {
+    position: 'bl'
+    });
+    bookings = hotel.confirmations;
     updates.updateInfoCard();
   },
 
   updateInfoCard: () => {
     updates.displayInfoCard();
     $('.see-bookings').click(updates.showBookings);
-    const picker = datepicker('#picker', {
-    position: 'bl'
-  });
     $('.greeting').html(`
       <p>Hello ${user.name}, </p>
       <p>Welcome Back! </p>`);
-    bookings = hotel.confirmations;
     rooms = hotel.rooms;
     inquiry = new Inquiry(rooms, bookings);
     user.fillBookings(bookings);
     user.fillTotalSpent(rooms)
     $('.investment').text(`$${user.moneySpent.toFixed(2)}`)
+    console.log(user.myBookings[0])
     $('.last-date').text(`${user.myBookings[user.myBookings.length -1].date.toLocaleString("en-US")}`);
-    updates.displayBookings()
-    $('.search-button').click(updates.showInputField)
+    updates.displayBookings(user.myBookings);
+    $('.search-button').click(updates.showInputField);
   },
 
-  displayBookings: () => {
-    user.myBookings.forEach(booking => {
+  displayBookings: (userBookings) => {
+    userBookings.forEach(booking => {
     $('.bookings').append(`
       <ul class="booking">
         <p>${rooms.find(room => {
@@ -112,6 +113,7 @@ const updates = {
   },
 
   showBookings: () => {
+    updates.displayBookings(user.myBookings);
     $('.dropdown').show();
     $('.see-bookings').click(() => $('.dropdown').hide())
   },
@@ -171,13 +173,14 @@ const updates = {
           }
           return response.json();
         })
-        .then(response => updates.postNotice(response, roomNumber))
+        .then(response => updates.postNotice(roomNumber))
         .catch((err) => alert(`This booking was not added.  Server says ${err}`));
     }
-    addBooking()
+    addBooking();
   },
 
-  postNotice: (response, roomNumber) => {
+  postNotice: (roomNumber) => {
+    user.myBookings.push({ "userID": user.id, "date": userInputDate, "roomNumber": parseInt(roomNumber) });
     setTimeout(() => {
       $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${userInputDate}.  `)
     }, 1500)
