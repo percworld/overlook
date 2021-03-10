@@ -6,18 +6,18 @@
 #### This app is designed to keep a hotel bookkeeping record and assist the customer in choosing and booking rooms while maintaining an account.  #### The users, hotel rooms, and bookings are hosted on a server and accessible through API calls.
 ---
 #### Navigation of the app:
+
 1. Login using the credentials listed below.
-
-
-3. Search for a room based on your preference and for the date you would like to stay
-4. Choose which room you would like and your account will update.  This is now stored on the server and cannot be overbooked.
-5. If you would like to see your current bookings, the hovering see bookings button will shpw all past and future bookings.
+2. You will see your status level as someone who has invested in the company. Your last stay is visible on the right.
+4. Search for a room based on your preference and for the date you would like to stay
+5. Choose which room you would like and your account will update.  This is now stored on the server and cannot be overbooked.
+6. If you would like to see your current bookings, the hovering see bookings button will shpw all past and future bookings.
 
 ---
 #### Login Credentials
 * **username** - There are 50 user names available ranging from ```customer1``` to ```customer50```
-
-* **password** - all passwords are overlook2021
+* **password** - all passwords are ```overlook2021```
+---
 ![](assets/README-6eac00aa.png)  ![](assets/README-1f662e1b.png)  ![](assets/README-2b3e00b9.png)  ![](assets/README-f9986e76.png)  ![](assets/README-a64b4303.png)  ![](assets/README-9d447d85.png)
 ---
 ### To Install:
