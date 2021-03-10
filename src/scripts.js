@@ -72,9 +72,8 @@ const updates = {
     rooms = hotel.rooms;
     inquiry = new Inquiry(rooms, bookings);
     user.fillBookings(bookings);
-    user.fillTotalSpent(rooms)
-    $('.investment').text(`$${user.moneySpent.toFixed(2)}`)
-    console.log(user.myBookings[0])
+    user.fillTotalSpent(rooms);
+    $('.investment').text(`$${user.moneySpent.toFixed(2)}`);
     $('.last-date').text(`${user.myBookings[user.myBookings.length -1].date.toLocaleString("en-US")}`);
     updates.displayBookings(user.myBookings);
     $('.search-button').click(updates.showInputField);
@@ -200,6 +199,10 @@ const updates = {
     if($('#single').is(':checked')) {
       roomsFiltered = inquiry.getRoomsByType('single room')
     }
+    updates.updateRooms(roomsFiltered);
+  },
+
+  updateRooms: (roomsFiltered) => {
     if(roomsFiltered) {
         $('.book-button-container').html("")
         roomsFiltered.forEach((room, index) => {
