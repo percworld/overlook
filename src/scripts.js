@@ -3,14 +3,12 @@ import Hotel from './Hotel';
 import Inquiry from './Inquiry';
 import $ from 'jquery';
 import  getCustomers from './index'
-// import moment from 'moment';
-// moment().format();
 import datepicker from 'js-datepicker'
 
 
 
-let hotel, user, bookings, today, rooms, inquiry;
-//today = '2020/03/03'
+let hotel, user, bookings, userInputDate, rooms, inquiry;
+
 const updates = {
 
   onLoad: (repoHotel) => {
@@ -64,14 +62,15 @@ const updates = {
   updateInfoCard: () => {
     updates.displayInfoCard();
     $('.see-bookings').click(updates.showBookings);
-    const picker = datepicker('#picker')
+    const picker = datepicker('#picker', {
+      position: 'bl'
+    })
     $('.greeting').html(`
-      <p>Hello, ${user.name}</p>
-      <p>and Welcome Back! </p>`);
+      <p>Hello ${user.name}, </p>
+      <p>Welcome Back! </p>`);
     bookings = hotel.confirmations;
     rooms = hotel.rooms;
     inquiry = new Inquiry(rooms, bookings);
-    today = inquiry.getToday();
     user.fillBookings(bookings);
     user.fillTotalSpent(rooms)
     $('.investment').text(`$${user.moneySpent.toFixed(2)}`)
@@ -129,9 +128,22 @@ const updates = {
     $('.home-button').click(updates.updateInfoCard);
   },
 
+  formatDate: (date) => {
+    var d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+    if (month.length < 2)
+        month = '0' + month;
+    if (day.length < 2)
+        day = '0' + day;
+    return [year, month, day].join('/');
+  },
+
   fillRoomsByInput: () => {
     $('.see-bookings').hide();
-    inquiry.checkAvailable(bookings, today);
+    userInputDate = updates.formatDate($('#picker:text').val())
+    inquiry.checkAvailable(bookings, userInputDate);
     let roomsFiltered;
     if($('#residential').is(':checked')) {
       roomsFiltered = inquiry.getRoomsByType('residential');
@@ -145,32 +157,32 @@ const updates = {
     if($('#single').is(':checked')) {
       roomsFiltered = inquiry.getRoomsByType('single room')
     }
-    if(roomsFiltered) {
+    if(roomsFiltered.length) {
       roomsFiltered.forEach((room, index) => {
-        console.log(room)
       $('.book-button-container').append(`
         <br>
         <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
         let targetRoom = roomsFiltered[index]
       });
+      updates.modifyDateTemplate();
       const bookButton = document.querySelector('.book-button-container');
       bookButton.addEventListener('click', updates.assignRoom)
-    } else {
-      $('.book-button-container').text(`We apologize fiercely! No rooms are
-       available on this date that match your wishes!`)
-    }
-    updates.evaluateDateInput;
+      } else {
+        $('.book-button-container').text(`We apologize fiercely! No rooms are
+          available on this date that match your wishes!`)
+      }
+  },
+
+  modifyDateTemplate: () => {
+    console.log(userInputDate)
   },
 
   assignRoom: (event) => {
-    console.log('Before:', event.target.id)
     let roomNumber = event.target.id;
-    console.log('Num : ', roomNumber)
     if(event.target.classList.contains("home-button")) {
       roomNumber = event.target.id;
     }
-    const payload = { "userID": user.id, "date": today, "roomNumber": parseInt(roomNumber) }
-    console.log(payload);
+    const payload = { "userID": user.id, "date": userInputDate, "roomNumber": parseInt(roomNumber) }
     const addBooking = () => {
       return fetch('http://localhost:3001/api/v1/bookings',
         {
@@ -190,19 +202,13 @@ const updates = {
         .catch((err) => alert(`This booking was not added.  Server says ${err}`));
     }
     addBooking()
-
   },
 
   postNotice: (response, roomNumber) => {
     setTimeout(() => {
-      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${response}.  `)
-    }, 1500)
-  },
-
-  evaluateDateInput: () => {
-    console.log('DATE: ', $('.picker val()'))
+      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${userInputDate}.  `)
+    }, 1000)
   }
-
 }
 
 export default updates;

@@ -1,5 +1,6 @@
 @import 'partial.scss';
 @import '~js-datepicker/src/datepicker';
+
 html {
   background: $yellow;
   background-image: url('../images/zulu_beadwork.jpg');
@@ -21,6 +22,7 @@ body {
 }
 
 /* Image and Title */
+
 header {
   font-size: 78px;
   width: 100vw;
@@ -60,7 +62,7 @@ header {
   position: relative;
   display: inline-block;
   box-shadow: $button-shadow;
-  margin: 0 0 0 8em;
+  margin: 0 0 0 9em;
   @extend %button;
   width: 12em;
   height: 2em;
@@ -119,7 +121,6 @@ header {
 
   }
   input {
-    //display: none;
     width:40%;
   }
   .login-button {
@@ -188,8 +189,15 @@ header {
     margin-left: 18px;
     width: 30vw;
   }
-  // .calendar-container{
-  // }
+  .calendar-container{
+    width: 92%;
+
+  }
+}
+
+#picker {
+  font-size: 32px;
+  width: 8em;
 }
 
 .calendar-container {
@@ -199,7 +207,7 @@ header {
   .calendar {
   width: 9em;
   height: 8em;
-  background-color: red;
+  background-color: #E60E00;
   }
 }
 
@@ -222,7 +230,7 @@ input[type="radio"] {
 .tag-label-checked,
 .room-tag > label:hover,
 .bidet-tag > label:hover {
-  background-color: #92a8d1;
+  background-color: $yellow;
   font-size: 2.5vh;
 }
 
@@ -255,10 +263,10 @@ footer {
   text-align: center;
   font-size: 34px;
   width: 100%;
-  height: 9vh;
+  height: 10vh;
   position: relative;
-  bottom: -4.44em;
-  margin-left: 4.44vw;
+  bottom: -3em;
+  margin-left: 10vw;
   h3 {
     padding: .22em;
     text-decoration: overline;
@@ -275,15 +283,18 @@ footer {
 /* TABLET */
 
 @media screen and (max-width: 630px) {
-  .see-bookings {
+  .info-container {
+    margin-left: 4em;
   }
 }
 
+/* DESKTOP */
 
 @media screen and (min-width: 980px) {
     .wrap-container {
       width: 90%;
     }
+
     h3 {
       display: flex;
       flex-direction:row;

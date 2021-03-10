@@ -1,5 +1,3 @@
-
-
 import './css/reset.scss';
 import './css/base.scss';
 import './css/styles.scss';
