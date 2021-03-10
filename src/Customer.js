@@ -1,5 +1,3 @@
-//import Inquiry from './Inquiry'
-// Manager is a child
 class Customer {
   constructor(person) {
     this.id = person.id;
@@ -26,8 +24,6 @@ class Customer {
       return money;
     }, 0);
   }
-//book a room
-
 }
 
 export default Customer;
