@@ -31,10 +31,8 @@ class Inquiry {
     strings.forEach(value => {
       let found = this.availableRooms.find(room => value === JSON.stringify(room));
         if (found) {
-          //console.log('FOUND: ',found)
           let index = this.availableRooms.indexOf(found);
           this.availableRooms.splice(index, 1);
-          //console.log('AVAIL: ',this.availableRooms)
         }
     });
   }
@@ -44,7 +42,7 @@ class Inquiry {
       return room.roomType.toLowerCase() === type.toLowerCase();
     });
   }
-  
+
   getToday() {
     let date = new Date();
     let year = date.getFullYear();

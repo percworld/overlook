@@ -63,8 +63,8 @@ const updates = {
     updates.displayInfoCard();
     $('.see-bookings').click(updates.showBookings);
     const picker = datepicker('#picker', {
-      position: 'bl'
-    })
+    position: 'bl'
+  });
     $('.greeting').html(`
       <p>Hello ${user.name}, </p>
       <p>Welcome Back! </p>`);
@@ -104,7 +104,6 @@ const updates = {
     $('.booking-area').hide();
     $('.info-area').hide();
     $('.see-bookings').hide();
-    //$('.login-container').show();
     $('footer').hide();
   },
 
@@ -142,9 +141,9 @@ const updates = {
 
   fillRoomsByInput: () => {
     $('.see-bookings').hide();
-    inquiry.checkAvailable(bookings, today);
+    userInputDate = updates.formatDate($('#picker:text').val())
+    inquiry.checkAvailable(bookings, userInputDate);
     updates.filterRooms();
-    updates.evaluateDateInput;
   },
 
   assignRoom: (event) => {
@@ -176,7 +175,7 @@ const updates = {
 
   postNotice: (response, roomNumber) => {
     setTimeout(() => {
-      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${response}.  `)
+      $('.book-button-container').text(`Thank you ${user.name}, You are booked for Room number ${roomNumber} on ${userInputDate}.  `)
     }, 1500)
   },
 
@@ -195,14 +194,15 @@ const updates = {
       roomsFiltered = inquiry.getRoomsByType('single room')
     }
     if(roomsFiltered) {
-      roomsFiltered.forEach((room, index) => {
-      $('.book-button-container').append(`
-        <br>
-        <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
-        let targetRoom = roomsFiltered[index]
-      });
-      const bookButton = document.querySelector('.book-button-container');
-      bookButton.addEventListener('click', updates.assignRoom)
+        $('.book-button-container').html("")
+        roomsFiltered.forEach((room, index) => {
+        $('.book-button-container').append(`
+          <br>
+          <button type="button" id="${room.number}" class="home-button">Room Number ${room.number}</button>`);
+          let targetRoom = roomsFiltered[index]
+        });
+        const bookButton = document.querySelector('.book-button-container');
+        bookButton.addEventListener('click', updates.assignRoom)
     } else {
       $('.book-button-container').text(`We apologize fiercely! No rooms are
        available on this date that match your wishes!`)

@@ -58,7 +58,6 @@ const getAllData = () => {
   Promise.all([getCustomers(), getRooms(), getBookings()])
   .then(dataSets => {
     const hotel = new Hotel(dataSets[0], dataSets[1], dataSets[2]);
-    console.log(dataSets[1])
     updates.onLoad(hotel);
   })
   .catch((err) => alert(`FAIL: This data is not available.  Server says ${err}`));
