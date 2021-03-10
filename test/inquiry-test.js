@@ -1,8 +1,8 @@
 import chai from 'chai';
 const expect = chai.expect;
 import Customer from '../src/Customer';
-import {customers, rooms, bookings} from './test-data';
 import Inquiry from '../src/Inquiry'; // may not need custs
+import {customers, rooms, bookings} from './test-data';
 
 let customer;
 let inquiry;
@@ -48,30 +48,6 @@ describe('Customer', function() {
     });
   });
 
-  // it.skip('should store all bookings and their attributes', () => {
-  //
-  //   expect(inquiry.bookings[0]).to.deep.equal({
-  //       id: "5fwrgu4i7k55hl6sz",
-  //       userID: 9,
-  //       date: "2020/04/22",
-  //       roomNumber: 15,
-  //       roomServiceCharges: []
-  //   });
-  //
-  //   expect(inquiry.bookings[2]).to.deep.equal({
-  //       "id": "5fwrgu4i7k55hl6t6",
-  //       "userID": 13,
-  //       "date": "2020/01/10",
-  //       "roomNumber": 12,
-  //       "roomServiceCharges": []
-  //   });
-  // });
-
-  // it('should have a date', () => {
-  //
-  //   expect(typeof inquiry.date).to.deep.equal('string');
-  // });
-
   it('should have a list of zero available rooms by default', () => {
 
     expect(inquiry.availableRooms).to.deep.equal([]);
@@ -106,8 +82,6 @@ describe('Customer', function() {
       inquiry.checkAvailable(bookings, "2020/04/22")
 
       expect(inquiry.unavailableRooms).to.have.a.lengthOf(1)
-      //console.log('Avail: ',inquiry.availableRooms)
-      //console.log('UNAvail: ',inquiry.unavailableRooms)
       expect(inquiry.availableRooms).to.have.a.lengthOf(7);
 
 
